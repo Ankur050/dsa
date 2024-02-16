@@ -1,3 +1,6 @@
+
+   ------------------   -------------------  -----  SINGLY LINKED LIST ------------  ----------------- -------------  --------------------
+
 #include<bits/stdc++.h>
 using namespace std ;
 
@@ -126,3 +129,116 @@ int main(){
    deleteatposition(head,2);
    display(head);
 }
+------ -------------- ------------------------- --- ------------    END ----- ---------------- ------------------ ---------------- -------------- ------
+------------------------------------------     DOUBLY LINKED LIST    --------- *********  ----------------- -------------------- ----------- -----------
+#include<bits/stdc++.h>
+using namespace std ;
+
+class Node{
+    public:
+        int val;
+        Node* prev;
+        Node* next;
+        
+        Node(int data){
+        
+        val=data;
+        prev=NULL;
+        next=NULL;
+    }
+};
+
+
+
+class doublylinkedlist{
+    public:
+        Node* head;
+        Node* tail;
+        
+        doublylinkedlist(){
+            head=NULL;
+            tail=NULL;
+        }
+        
+        
+void display(){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->val<<"<->";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+        
+        
+        
+        
+        void insertathead(int val){
+            Node* new_node= new Node(val);
+            if(head==NULL){
+           head=new_node;
+           tail=new_node;
+           return ;
+            }
+            new_node->next=head;
+            head->prev=new_node;
+            head=new_node;
+            return ;
+            
+        }
+        
+        void insertatend(int val){
+            Node* new_node= new Node(val);
+            if(tail==NULL){
+                head=new_node;
+                tail=new_node;
+                return;
+            }
+            tail->next=new_node;
+            new_node->prev=tail;
+            tail=new_node;
+            return;
+            
+        }
+        // assuming  pos is less than or equal to less than ll
+        void insertatposition(int pos,int val){
+            Node* temp=head;
+            int count=1;
+            while(count<(pos-1)){
+                temp=temp->next;
+                count++;
+            }
+            // temp will be pointing tot he node at(k-1)th index
+            Node* new_node=new Node(val);
+            new_node->next=temp->next;
+            temp->next=new_node;
+            new_node->prev=temp;
+            new_node->next->prev=new_node;
+            return;
+        }
+};
+int main(){
+   
+    doublylinkedlist dll;
+    //dll.insertathead(1);
+    //dll.display();
+    //dll.insertathead(2);
+    //dll.display();
+    //dll.insertathead(5);
+   // dll.display();
+    dll.insertatend(8);
+    dll.display();
+    dll.insertatend(9);
+    dll.display();
+    dll.insertatend(8);
+    dll.display();
+    dll.insertatend(9);
+    dll.display();
+    dll.insertatposition(2,5);
+    dll.display();
+    return 0;
+}
+
+
+
+---- --------------- -------------------- ------------------ -END ------------------------------------- --        ---------------
